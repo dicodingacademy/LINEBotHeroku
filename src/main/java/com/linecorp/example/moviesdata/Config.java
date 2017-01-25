@@ -23,4 +23,4 @@ public class Config
     {
         return mEnv.getProperty("com.linecorp.channel_access_token");
     }
-};
+}
