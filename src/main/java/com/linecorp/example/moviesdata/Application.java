@@ -12,12 +12,11 @@ public class Application extends SpringBootServletInitializer
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder app)
     {
-        return app.sources(Application.class);
+        return app.sources(LineBotController.class);
     }
 
     public static void main(String [] args)
     {
-        SpringApplication.run(Config.class, args);
-        SpringApplication.run(LineBotController.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
