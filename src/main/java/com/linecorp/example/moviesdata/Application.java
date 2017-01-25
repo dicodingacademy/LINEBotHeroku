@@ -1,22 +1,21 @@
-
 package com.linecorp.example.moviesdata;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.*;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
-@Controller
 @SpringBootApplication
-public class Application {
-
-    @RequestMapping("/")
-    @ResponseBody
-    String home() {
-        return "Hello World!";
+public class Application extends SpringBootServletInitializer
+{
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder app)
+    {
+        return app.sources(Application.class);
     }
 
-    public static void main(String[] args) {
+    public static void main(String [] args)
+    {
         SpringApplication.run(Application.class, args);
     }
-}
+};
