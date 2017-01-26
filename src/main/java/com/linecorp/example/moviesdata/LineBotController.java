@@ -128,12 +128,6 @@ public class LineBotController
     //Method for get movie data from OMDb API
     private void getMovieData(String title, Payload ePayload, String targetID) throws IOException{
         String userTxt = title;
-        
-        if (title.indexOf("\"") == -1){
-            replyToUser(ePayload.events[0].replyToken, "Unknown keyword");
-            return;
-        }
-
         System.out.println("Index: " + Integer.toString(title.indexOf("\"")));
         System.out.println("Text from User: " + title);
         
