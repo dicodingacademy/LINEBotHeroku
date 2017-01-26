@@ -181,7 +181,7 @@ public class LineBotController
         String msgToUser = " ";
         
         //Check user's request
-        if (userTxt.contains("title")){
+        if (userTxt.contains("success")){
             msgToUser = event.getMovie();
             pushPoster(targetID, event.getPoster());
         } else if (userTxt.contains("plot")){
@@ -268,7 +268,7 @@ public class LineBotController
         CarouselTemplate carouselTemplate = new CarouselTemplate(
                     Arrays.asList(new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
-                                        (new MessageAction("Full Data", "Title \"" + title + "\""),
+                                        (new MessageAction("Full Data", "success \"" + title + "\""),
                                          new MessageAction("Summary", "Plot \"" + title + "\""),
                                          new MessageAction("Poster", "Poster \"" + title + "\""))),
                                   new CarouselColumn
