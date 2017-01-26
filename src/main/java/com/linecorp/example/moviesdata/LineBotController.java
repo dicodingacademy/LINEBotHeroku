@@ -4,19 +4,10 @@ package com.linecorp.example.moviesdata;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.InputStream;
-import java.io.FileOutputStream;
-import java.util.Map;
 import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Future;
 import java.util.concurrent.ExecutionException;
-import java.nio.file.Path;
-import java.nio.file.Files;
-import java.nio.CharBuffer;
-import java.time.LocalDateTime;
-import java.sql.SQLException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,44 +15,25 @@ import org.springframework.beans.factory.annotation.*;
 
 
 import org.apache.http.HttpResponse;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.nio.client.HttpAsyncClients;
 import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
-import org.apache.http.nio.protocol.HttpAsyncRequestProducer;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.commons.io.IOUtils;
 
-import org.json.JSONObject;
-import org.json.JSONArray;
 import com.google.gson.Gson;
 
-import okhttp3.ResponseBody;
 import retrofit2.Response;
 
-import com.linecorp.bot.model.action.PostbackAction;
-import com.linecorp.bot.model.action.URIAction;
 import com.linecorp.bot.model.action.MessageAction;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
-import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.message.TemplateMessage;
-import com.linecorp.bot.model.message.VideoMessage;
 import com.linecorp.bot.model.message.ImageMessage;
 import com.linecorp.bot.model.message.template.CarouselColumn;
 import com.linecorp.bot.model.message.template.CarouselTemplate;
-import com.linecorp.bot.model.message.template.ButtonsTemplate;
 import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.client.LineSignatureValidator;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
-
-import com.cloudinary.*;
-import com.cloudinary.utils.ObjectUtils;
 
 @RestController
 @RequestMapping(value="/linebot")
@@ -205,29 +177,29 @@ public class LineBotController
         }
         
         Gson mGson = new Gson();
-        Movie movie = mGson.fromJson(jObjGet, Movie.class);
+        Event event = mGson.fromJson(jObjGet, Event.class);
         String msgToUser = " ";
         
         //Check user's request
         if (userTxt.contains("title")){
-            msgToUser = movie.getMovie();
-            pushPoster(targetID, movie.getPoster());
+            msgToUser = event.getMovie();
+            pushPoster(targetID, event.getPoster());
         } else if (userTxt.contains("plot")){
-            msgToUser = movie.getPlot();
+            msgToUser = event.getPlot();
         } else if (userTxt.contains("released")){
-            msgToUser = movie.getReleased();
+            msgToUser = event.getReleased();
         } else if (userTxt.contains("poster")){
-            pushPoster(targetID, movie.getPoster());
+            pushPoster(targetID, event.getPoster());
         } else if (userTxt.contains("director")){
-            msgToUser = movie.getDirector();
+            msgToUser = event.getDirector();
         } else if (userTxt.contains("writer")){
-            msgToUser = movie.getWriter();
+            msgToUser = event.getWriter();
         } else if (userTxt.contains("awards")){
-            msgToUser = movie.getAwards();
+            msgToUser = event.getAwards();
         } else if (userTxt.contains("actors")){
-            msgToUser = movie.getActors();
-        } else if (userTxt.contains("carousel")){
-            carouselForUser(movie.getPoster(), ePayload.events[0].source.userId, movie.getTitle());
+            msgToUser = event.getActors();
+        } else if (userTxt.contains("event")){
+            carouselForUser(event.getPoster(), ePayload.events[0].source.userId, event.getTitle());
         }
         
         System.out.println("Message to user: " + msgToUser);

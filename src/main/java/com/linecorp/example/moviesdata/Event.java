@@ -1,6 +1,6 @@
 package com.linecorp.example.moviesdata;
 
-public class Movie {
+public class Event {
 
     private String Title;
     private String Released;
