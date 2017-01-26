@@ -140,7 +140,7 @@ public class LineBotController
         System.out.println("Text from User: " + title);
         
         // Act as client with GET method
-        String URI = "http://www.omdbapi.com/?t=" + title + "&r=json";
+        String URI = "https://www.dicoding.com/public/api/events/";
         System.out.println("URI: " +  URI);
         
         String jObjGet = " ";
