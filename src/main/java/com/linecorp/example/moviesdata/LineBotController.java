@@ -199,7 +199,7 @@ public class LineBotController
         } else if (userTxt.contains("actors")){
             msgToUser = event.getActors();
         } else if (userTxt.contains("event")){
-            carouselForUser(event.getPoster(), ePayload.events[0].source.userId, event.getTitle());
+            carouselForUser(event.getPoster(), ePayload.events[0].source.userId, "Bluemix");
         }
         
         System.out.println("Message to user: " + msgToUser);
