@@ -128,11 +128,19 @@ public class LineBotController
     //Method for get movie data from OMDb API
     private void getMovieData(String title, Payload ePayload, String targetID) throws IOException{
         String userTxt = title;
-        System.out.println("Index: " + Integer.toString(title.indexOf("\"")));
-        System.out.println("Text from User: " + title);
-        
+
+//        if (title.indexOf("\"") == -1){
+//            replyToUser(ePayload.events[0].replyToken, "Unknown keyword");
+//            return;
+//        }
+//
+//        title = title.substring(title.indexOf("\"") + 1, title.lastIndexOf("\""));
+//        System.out.println("Index: " + Integer.toString(title.indexOf("\"")));
+//        title = title.replace(" ", "+");
+//        System.out.println("Text from User: " + title);
+
         // Act as client with GET method
-        String URI = "https://www.dicoding.com/public/api/events/";
+        String URI = "http://private-b8cf44-androidcleancode.apiary-mock.com/v1/city";
         System.out.println("URI: " +  URI);
         
         String jObjGet = " ";
@@ -173,15 +181,15 @@ public class LineBotController
         String msgToUser = " ";
         
         //Check user's request
-        if (userTxt.contains("success")){
+        if (userTxt.contains("message")){
             msgToUser = event.getMovie();
-            pushPoster(targetID, event.getPoster());
+            pushPoster(targetID, event.getImage_path());
         } else if (userTxt.contains("plot")){
             msgToUser = event.getPlot();
         } else if (userTxt.contains("released")){
             msgToUser = event.getReleased();
         } else if (userTxt.contains("poster")){
-            pushPoster(targetID, event.getPoster());
+            pushPoster(targetID, event.getImage_path());
         } else if (userTxt.contains("director")){
             msgToUser = event.getDirector();
         } else if (userTxt.contains("writer")){
@@ -191,7 +199,7 @@ public class LineBotController
         } else if (userTxt.contains("actors")){
             msgToUser = event.getActors();
         } else if (userTxt.contains("event")){
-            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/20170112125146109f0470214ce3395b32e48678118a5f.jpeg", ePayload.events[0].source.userId, "Liburan Seru Bersama Bluemix");
+            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/20170112125146109f0470214ce3395b32e48678118a5f.jpeg", ePayload.events[0].source.userId, event.getMessage());
         }
         
         System.out.println("Message to user: " + msgToUser);
@@ -260,7 +268,7 @@ public class LineBotController
         CarouselTemplate carouselTemplate = new CarouselTemplate(
                     Arrays.asList(new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
-                                        (new MessageAction("Summary", "success \"" + title + "\""),
+                                        (new MessageAction("Summary", "message \"" + title + "\""),
                                          new MessageAction("Description", "Plot \"" + title + "\""),
                                          new MessageAction("Link", "Poster \"" + title + "\""))),
                                   new CarouselColumn

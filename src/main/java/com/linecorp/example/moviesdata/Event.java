@@ -2,13 +2,13 @@ package com.linecorp.example.moviesdata;
 
 public class Event {
 
-    private String Title;
+    private String message;
     private String Released;
     private String Director;
     private String Writer;
     private String Actors;
     private String Plot;
-    private String Poster;
+    private String image_path;
     private String Awards;
     
     
@@ -50,11 +50,11 @@ public class Event {
         return msg;
     }
     
-    public String getPoster(){
-        return Poster;
+    public String getImage_path(){
+        return image_path;
     }
     
-    public String getTitle(){
-        return Title;
+    public String getMessage(){
+        return message;
     }
 }
