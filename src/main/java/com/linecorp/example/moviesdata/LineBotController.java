@@ -133,10 +133,8 @@ public class LineBotController
             replyToUser(ePayload.events[0].replyToken, "Unknown keyword");
             return;
         }
-        
-        title = title.substring(title.indexOf("\"") + 1, title.lastIndexOf("\""));
+
         System.out.println("Index: " + Integer.toString(title.indexOf("\"")));
-        title = title.replace(" ", "+");
         System.out.println("Text from User: " + title);
         
         // Act as client with GET method
@@ -199,7 +197,7 @@ public class LineBotController
         } else if (userTxt.contains("actors")){
             msgToUser = event.getActors();
         } else if (userTxt.contains("event")){
-            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/201701100846232f923ec7e8e805773b7c04e7a0fb5a0f.jpeg", ePayload.events[0].source.userId, "Bluemix");
+            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/20170112125146109f0470214ce3395b32e48678118a5f.jpeg", ePayload.events[0].source.userId, "Liburan Seru Bersama Bluemix");
         }
         
         System.out.println("Message to user: " + msgToUser);
@@ -268,14 +266,14 @@ public class LineBotController
         CarouselTemplate carouselTemplate = new CarouselTemplate(
                     Arrays.asList(new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
-                                        (new MessageAction("Full Data", "success \"" + title + "\""),
-                                         new MessageAction("Summary", "Plot \"" + title + "\""),
-                                         new MessageAction("Poster", "Poster \"" + title + "\""))),
+                                        (new MessageAction("Summary", "success \"" + title + "\""),
+                                         new MessageAction("Description", "Plot \"" + title + "\""),
+                                         new MessageAction("Link", "Poster \"" + title + "\""))),
                                   new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
-                                        (new MessageAction("Released Date", "Released \"" + title + "\""),
-                                         new MessageAction("Actors", "Actors \"" + title + "\""),
-                                         new MessageAction("Awards", "Awards \"" + title + "\"")))));
+                                        (new MessageAction("Time", "Released \"" + title + "\""),
+                                         new MessageAction("Address", "Actors \"" + title + "\""),
+                                         new MessageAction("Owner", "Awards \"" + title + "\"")))));
         TemplateMessage templateMessage = new TemplateMessage("Your search result", carouselTemplate);
         PushMessage pushMessage = new PushMessage(sourceId,templateMessage);
         try {
