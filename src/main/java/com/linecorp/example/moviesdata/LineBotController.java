@@ -267,7 +267,7 @@ public class LineBotController
     private void carouselForUser(String poster_url, String sourceId, String title){
         CarouselTemplate carouselTemplate = new CarouselTemplate(
                     Arrays.asList(new CarouselColumn
-                                    (poster_url, "Bluemix", "Select one for more info", Arrays.asList
+                                    (poster_url, title, "Select one for more info", Arrays.asList
                                         (new MessageAction("Full Data", "success \"" + title + "\""),
                                          new MessageAction("Summary", "Plot \"" + title + "\""),
                                          new MessageAction("Poster", "Poster \"" + title + "\""))),
