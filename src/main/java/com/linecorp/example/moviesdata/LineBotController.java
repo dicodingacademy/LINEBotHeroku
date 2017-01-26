@@ -268,14 +268,14 @@ public class LineBotController
         CarouselTemplate carouselTemplate = new CarouselTemplate(
                     Arrays.asList(new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
-                                        (new MessageAction("Summary", "success \"" + title + "\""),
-                                         new MessageAction("Description", "Plot \"" + title + "\""),
-                                         new MessageAction("Link", "Poster \"" + title + "\""))),
+                                        (new MessageAction("Full Data", "success \"" + title + "\""),
+                                         new MessageAction("Summary", "Plot \"" + title + "\""),
+                                         new MessageAction("Poster", "Poster \"" + title + "\""))),
                                   new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
-                                        (new MessageAction("Address", "Released \"" + title + "\""),
-                                         new MessageAction("Time", "Actors \"" + title + "\""),
-                                         new MessageAction("Owner", "Awards \"" + title + "\"")))));
+                                        (new MessageAction("Released Date", "Released \"" + title + "\""),
+                                         new MessageAction("Actors", "Actors \"" + title + "\""),
+                                         new MessageAction("Awards", "Awards \"" + title + "\"")))));
         TemplateMessage templateMessage = new TemplateMessage("Your search result", carouselTemplate);
         PushMessage pushMessage = new PushMessage(sourceId,templateMessage);
         try {
