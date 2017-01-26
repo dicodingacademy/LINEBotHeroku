@@ -199,7 +199,7 @@ public class LineBotController
         } else if (userTxt.contains("actors")){
             msgToUser = event.getActors();
         } else if (userTxt.contains("event")){
-            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/201701100846232f923ec7e8e805773b7c04e7a0fb5a0f.jpeg", ePayload.events[0].source.userId, "Liburan Seru Bersama Bluemix : IST AKPRIND Yogyakarta");
+            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/201701100846232f923ec7e8e805773b7c04e7a0fb5a0f.jpeg", ePayload.events[0].source.userId, "Bluemix");
         }
         
         System.out.println("Message to user: " + msgToUser);
