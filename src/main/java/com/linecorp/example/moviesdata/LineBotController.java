@@ -196,12 +196,12 @@ public class LineBotController
         
         System.out.println("Message to user: " + msgToUser);
         
-        //Check whether response successfully retrieve or not
-        if (msgToUser.length() <= 11 || !ePayload.events[0].message.type.equals("text")){
-            replyToUser(ePayload.events[0].replyToken, "Request Timeout");
-        } else {
-            replyToUser(ePayload.events[0].replyToken, msgToUser);
-        }
+//        //Check whether response successfully retrieve or not
+//        if (msgToUser.length() <= 11 || !ePayload.events[0].message.type.equals("text")){
+//            replyToUser(ePayload.events[0].replyToken, "Request Timeout");
+//        } else {
+//            replyToUser(ePayload.events[0].replyToken, msgToUser);
+//        }
     }
 
     //Method for reply user's message
