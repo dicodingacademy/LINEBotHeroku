@@ -2,16 +2,17 @@ package com.linecorp.example.moviesdata;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 public class Event {
 
     private Boolean success;
-    private Collection<Data> data;
+    private List<Data> data;
     public Boolean getSuccess ()
     {
         return success;
     }
-    public Collection<Data> getData(){
+    public List<Data> getData(){
         return data;
     }
 }
