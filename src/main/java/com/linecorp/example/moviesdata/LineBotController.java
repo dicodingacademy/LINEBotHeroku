@@ -274,7 +274,7 @@ public class LineBotController
                                     (poster_url, title, "Select one for more info", Arrays.asList
                                         (new MessageAction("Summary", "summary"),
                                          new MessageAction("Description", "description"),
-                                         new URIAction("Link", "https://google.com"))),
+                                         new MessageAction("Link", uri))),
                                   new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
                                         (new MessageAction("Time", "time"),
