@@ -4,16 +4,11 @@ package com.linecorp.example.moviesdata;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 import java.util.concurrent.Future;
 import java.util.concurrent.ExecutionException;
 
-import com.google.gson.reflect.TypeToken;
-import org.omg.CORBA.IMP_LIMIT;
+import com.linecorp.bot.model.action.URIAction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -124,7 +119,7 @@ public class LineBotController
                     }
                 }
                 
-                pushType(idTarget, msgText + " - " + payload.events[0].source.type);
+//                pushType(idTarget, msgText + " - " + payload.events[0].source.type);
             }
         }
          
@@ -195,20 +190,20 @@ public class LineBotController
         
         //Check user's request
         if (userTxt.contains("name")){
-            pushType(targetID, event.getData().getName());
+            pushMessage(targetID, event.getData().getName());
         } else if (userTxt.contains("summary")){
-            pushType(targetID, summary);
+            pushMessage(targetID, summary);
         } else if (userTxt.contains("description")){
-            pushType(targetID, description);
+            pushMessage(targetID, description);
         } else if (userTxt.contains("time")){
-            pushType(targetID, time);
+            pushMessage(targetID, time);
         } else if (userTxt.contains("address")){
-            pushType(targetID, address);
+            pushMessage(targetID, address);
         } else if (userTxt.contains("owner")){
-            pushType(targetID, owner);
+            pushMessage(targetID, owner);
         }
         else if (userTxt.contains("event")){
-            carouselForUser(image, ePayload.events[0].source.userId, owner);
+            carouselForUser(image, ePayload.events[0].source.userId, owner, link);
         }
         
         System.out.println("Message to user: " + msgToUser);
@@ -256,7 +251,7 @@ public class LineBotController
     }
     
     //Method for push message to user
-    private void pushType(String sourceId, String txt){
+    private void pushMessage(String sourceId, String txt){
         TextMessage textMessage = new TextMessage(txt);
         PushMessage pushMessage = new PushMessage(sourceId,textMessage);
         try {
@@ -273,13 +268,13 @@ public class LineBotController
     }
     
     //Method for send caraousel template message to user
-    private void carouselForUser(String poster_url, String sourceId, String title){
+    private void carouselForUser(String poster_url, String sourceId, String title, String uri){
         CarouselTemplate carouselTemplate = new CarouselTemplate(
                     Arrays.asList(new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
                                         (new MessageAction("Summary", "summary"),
                                          new MessageAction("Description", "description"),
-                                         new MessageAction("Link", "link"))),
+                                         new URIAction("Link", uri))),
                                   new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
                                         (new MessageAction("Time", "time"),
