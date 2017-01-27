@@ -4,13 +4,10 @@ import java.util.List;
 
 public class Event {
 
-    private Boolean success;
-    public Boolean getSuccess ()
+    private String success;
+    public String getSuccess ()
     {
         return success;
     }
-    private String data;
-    public String getData(){
-        return data;
-    }
+
 }
