@@ -10,4 +10,9 @@ public class Event {
         return success;
     }
 
+    private String data;
+    public String getData ()
+    {
+        return data;
+    }
 }
