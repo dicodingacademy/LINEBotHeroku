@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Future;
 import java.util.concurrent.ExecutionException;
@@ -182,7 +183,8 @@ public class LineBotController
         
         Gson mGson = new Gson();
         Event event = mGson.fromJson(jObjGet, Event.class);
-//        String success = String.valueOf(event.getSuccess());
+        Type collectionType = new TypeToken<Collection<Data>>(){}.getType();
+        Collection<Data> data = mGson.fromJson(jObjGet, collectionType);
         String msgToUser = " ";
         
         //Check user's request
