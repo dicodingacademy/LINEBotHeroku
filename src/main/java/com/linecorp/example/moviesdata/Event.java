@@ -4,7 +4,7 @@ public class Event {
 
     private EventData[] data;
 
-    private String success;
+    private Boolean success;
 
     public EventData[] getData ()
     {
@@ -16,12 +16,12 @@ public class Event {
         this.data = data;
     }
 
-    public String getSuccess ()
+    public Boolean getSuccess ()
     {
         return success;
     }
 
-    public void setSuccess (String success)
+    public void setSuccess (Boolean success)
     {
         this.success = success;
     }
