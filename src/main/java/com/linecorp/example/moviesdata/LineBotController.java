@@ -178,17 +178,20 @@ public class LineBotController
         
         Gson mGson = new Gson();
         Event event = mGson.fromJson(jObjGet, Event.class);
-//        EventData eventData = mGson.fromJson(jObjGet, EventData.class);
-        String success = String.valueOf(event.getSuccess());
         String msgToUser = " ";
         
         //Check user's request
         if (userTxt.contains("owner")){
-            msgToUser = success;
-//            pushPoster(targetID, eventData.getImage_path());
+            int i;
+            for (i = 0; i < event.data.size(); i++){
+                msgToUser = event.data.get(i).getOwner_display_name();
+            }
         }
         else if (userTxt.contains("event")){
-            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/20170112125146109f0470214ce3395b32e48678118a5f.jpeg", ePayload.events[0].source.userId, success);
+            int i;
+            for (i = 0; i < event.data.size(); i++){
+                carouselForUser(event.data.get(i).getImage_path(), ePayload.events[0].source.userId, event.data.get(i).getOwner_display_name());
+            }
         }
         
         System.out.println("Message to user: " + msgToUser);
