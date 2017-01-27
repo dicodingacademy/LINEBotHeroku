@@ -182,7 +182,7 @@ public class LineBotController
         
         Gson mGson = new Gson();
         Event event = mGson.fromJson(jObjGet, Event.class);
-        String success = String.valueOf(event.getSuccess());
+        String success = String.valueOf(event.getSucces());
         String msgToUser = " ";
         
         //Check user's request
