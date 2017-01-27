@@ -195,17 +195,17 @@ public class LineBotController
         
         //Check user's request
         if (userTxt.contains("name")){
-            msgToUser = event.getData().getName();
+            pushType(targetID, event.getData().getName());
         } else if (userTxt.contains("summary")){
-            msgToUser = summary;
+            pushType(targetID, summary);
         } else if (userTxt.contains("description")){
-            msgToUser = description;
+            pushType(targetID, description);
         } else if (userTxt.contains("time")){
-            msgToUser = time;
+            pushType(targetID, time);
         } else if (userTxt.contains("address")){
-            msgToUser = address;
+            pushType(targetID, address);
         } else if (userTxt.contains("owner")){
-            msgToUser = owner;
+            pushType(targetID, owner);
         }
         else if (userTxt.contains("event")){
             carouselForUser(image, ePayload.events[0].source.userId, owner);
