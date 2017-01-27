@@ -4,15 +4,10 @@ import java.util.List;
 
 public class Event {
 
-    private String success;
-    public String getSuccess ()
+    private List<String> success;
+    public List<String> getSuccess ()
     {
         return success;
     }
 
-    private String data;
-    public String getData ()
-    {
-        return data;
-    }
 }
