@@ -198,7 +198,7 @@ public class LineBotController
 //            pushPoster(targetID, eventData.getImage_path());
         }
         else if (userTxt.contains("event")){
-            carouselForUser(image, ePayload.events[0].source.userId, owner);
+            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/20170112125146109f0470214ce3395b32e48678118a5f.jpeg", ePayload.events[0].source.userId, owner);
         }
         
         System.out.println("Message to user: " + msgToUser);
