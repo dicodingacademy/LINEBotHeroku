@@ -184,6 +184,12 @@ public class LineBotController
         Gson mGson = new Gson();
         Event event = mGson.fromJson(jObjGet, Event.class);
         String owner = event.getData().getOwner_display_name();
+        String summary = event.getData().getSummary();
+        String description = event.getData().getDescription();
+        String link = event.getData().getLink();
+        String time = event.getData().getBegin_time() + " - " + event.getData().getEnd_time();
+        String address = event.getData().getAddress();
+        String image = event.getData().getImage_path();
         String msgToUser = " ";
         
         //Check user's request
@@ -192,7 +198,7 @@ public class LineBotController
 //            pushPoster(targetID, eventData.getImage_path());
         }
         else if (userTxt.contains("event")){
-            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/20170112125146109f0470214ce3395b32e48678118a5f.jpeg", ePayload.events[0].source.userId, owner);
+            carouselForUser(image, ePayload.events[0].source.userId, owner);
         }
         
         System.out.println("Message to user: " + msgToUser);
@@ -261,7 +267,7 @@ public class LineBotController
         CarouselTemplate carouselTemplate = new CarouselTemplate(
                     Arrays.asList(new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
-                                        (new MessageAction("Summary", "message \"" + title + "\""),
+                                        (new MessageAction("Summary", "event"),
                                          new MessageAction("Description", "Plot \"" + title + "\""),
                                          new MessageAction("Link", "Poster \"" + title + "\""))),
                                   new CarouselColumn
