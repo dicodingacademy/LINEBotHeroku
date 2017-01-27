@@ -13,6 +13,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ExecutionException;
 
 import com.google.gson.reflect.TypeToken;
+import org.omg.CORBA.IMP_LIMIT;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -189,20 +190,28 @@ public class LineBotController
         String link = event.getData().getLink();
         String time = event.getData().getBegin_time() + " - " + event.getData().getEnd_time();
         String address = event.getData().getAddress();
-        String image = event.getData().getImage_path();
+        String image = "https://dicodingacademy.blob.core.windows.net/eventimages/"+event.getData().getImage_path();
         String msgToUser = " ";
         
         //Check user's request
-        if (userTxt.contains("owner")){
-//            msgToUser = success;
-//            pushPoster(targetID, eventData.getImage_path());
+        if (userTxt.contains("name")){
+            msgToUser = event.getData().getName();
+        } else if (userTxt.contains("summary")){
+            msgToUser = summary;
+        } else if (userTxt.contains("description")){
+            msgToUser = description;
+        } else if (userTxt.contains("time")){
+            msgToUser = time;
+        } else if (userTxt.contains("address")){
+            msgToUser = address;
+        } else if (userTxt.contains("owner")){
+            msgToUser = owner;
         }
         else if (userTxt.contains("event")){
-            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/20170112125146109f0470214ce3395b32e48678118a5f.jpeg", ePayload.events[0].source.userId, owner);
+            carouselForUser(image, ePayload.events[0].source.userId, owner);
         }
         
         System.out.println("Message to user: " + msgToUser);
-        System.out.println(image);
         
 //        //Check whether response successfully retrieve or not
 //        if (msgToUser.length() <= 11 || !ePayload.events[0].message.type.equals("text")){
@@ -268,14 +277,14 @@ public class LineBotController
         CarouselTemplate carouselTemplate = new CarouselTemplate(
                     Arrays.asList(new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
-                                        (new MessageAction("Summary", "event"),
-                                         new MessageAction("Description", "Plot \"" + title + "\""),
-                                         new MessageAction("Link", "Poster \"" + title + "\""))),
+                                        (new MessageAction("Summary", "summary"),
+                                         new MessageAction("Description", "description"),
+                                         new MessageAction("Link", "link"))),
                                   new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
-                                        (new MessageAction("Time", "Released \"" + title + "\""),
-                                         new MessageAction("Address", "Actors \"" + title + "\""),
-                                         new MessageAction("Owner", "Awards \"" + title + "\"")))));
+                                        (new MessageAction("Time", "time"),
+                                         new MessageAction("Address", "address"),
+                                         new MessageAction("Owner", "owner")))));
         TemplateMessage templateMessage = new TemplateMessage("Your search result", carouselTemplate);
         PushMessage pushMessage = new PushMessage(sourceId,templateMessage);
         try {
