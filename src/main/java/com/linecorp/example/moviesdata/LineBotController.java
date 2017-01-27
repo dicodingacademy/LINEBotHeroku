@@ -182,9 +182,7 @@ public class LineBotController
         }
         
         Gson mGson = new Gson();
-//        Event event = mGson.fromJson(jObjGet, Event.class);
-        Type collectionType = new TypeToken<Collection<Event>>(){}.getType();
-        Collection<Event> data = mGson.fromJson(jObjGet, collectionType);
+        Event event = mGson.fromJson(jObjGet, Event.class);
         String msgToUser = " ";
         
         //Check user's request
