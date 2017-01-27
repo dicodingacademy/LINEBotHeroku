@@ -1,5 +1,7 @@
 package com.linecorp.example.moviesdata;
 
+import java.awt.*;
+
 public class Event {
 
     private Boolean success;
@@ -8,8 +10,8 @@ public class Event {
         return success;
     }
 
-    private Data[] data;
-    public Data[] getData(){
+    private List data;
+    public List getData(){
         return data;
     }
 }
