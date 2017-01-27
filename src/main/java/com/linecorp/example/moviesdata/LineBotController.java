@@ -178,28 +178,16 @@ public class LineBotController
         
         Gson mGson = new Gson();
         Event event = mGson.fromJson(jObjGet, Event.class);
+        EventData eventData = mGson.fromJson(jObjGet, EventData.class);
         String msgToUser = " ";
         
         //Check user's request
-        if (userTxt.contains("message")){
-            msgToUser = event.getMessage();
-            pushPoster(targetID, event.getImage_path());
-        } else if (userTxt.contains("plot")){
-            msgToUser = event.getPlot();
-        } else if (userTxt.contains("released")){
-            msgToUser = event.getReleased();
-        } else if (userTxt.contains("poster")){
-            pushPoster(targetID, event.getImage_path());
-        } else if (userTxt.contains("director")){
-            msgToUser = event.getDirector();
-        } else if (userTxt.contains("writer")){
-            msgToUser = event.getWriter();
-        } else if (userTxt.contains("awards")){
-            msgToUser = event.getAwards();
-        } else if (userTxt.contains("actors")){
-            msgToUser = event.getActors();
-        } else if (userTxt.contains("event")){
-            carouselForUser(event.getImage_path(), ePayload.events[0].source.userId, event.getMessage());
+        if (userTxt.contains("owner")){
+            msgToUser = eventData.getOwner_display_name();
+            pushPoster(targetID, eventData.getImage_path());
+        }
+        else if (userTxt.contains("event")){
+            carouselForUser(eventData.getImage_path(), ePayload.events[0].source.userId, eventData.getOwner_display_name());
         }
         
         System.out.println("Message to user: " + msgToUser);
