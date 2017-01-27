@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Event {
 
-    private List<String> success;
-    public List<String> getSuccess ()
+    private int success;
+    public int getSuccess ()
     {
         return success;
     }
