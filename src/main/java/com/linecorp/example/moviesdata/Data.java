@@ -3,7 +3,7 @@ package com.linecorp.example.moviesdata;
 /**
  * Created by root on 1/27/17.
  */
-public class EventData {
+public class Data {
 
     private String owner_display_name;
 

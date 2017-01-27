@@ -1,19 +1,20 @@
 package com.linecorp.example.moviesdata;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Event {
 
     private Boolean success;
-//    public List<EventData> data = new ArrayList<EventData>();
-
+//    public List<Data> data = new ArrayList<Data>();
+    private Data[] data;
     public Boolean getSuccess ()
     {
         return success;
     }
+    public Data[] getData ()
+    {
+        return data;
+    }
 
-//    public List<EventData> getData() {
+//    public List<Data> getData() {
 //        return data;
 //    }
 }
