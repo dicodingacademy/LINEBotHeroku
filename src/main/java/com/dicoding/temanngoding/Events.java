@@ -1,4 +1,4 @@
-package com.linecorp.example.moviesdata;
+package com.dicoding.temanngoding;
 
 public class Events {
     public String type;

@@ -1,5 +1,5 @@
 
-package com.linecorp.example.moviesdata;
+package com.dicoding.temanngoding;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -185,7 +185,7 @@ public class LineBotController
         String link = event.getData().get(0).getLink();
         String time = event.getData().get(0).getBegin_time() + " - " + event.getData().get(0).getEnd_time();
         String address = event.getData().get(0).getAddress();
-        String image = "https://dicodingacademy.blob.core.windows.net/eventimages/"+event.getData().get(0).getImage_path();
+        String image = event.getData().get(0).getImage_path();
         String msgToUser = " ";
         
         //Check user's request

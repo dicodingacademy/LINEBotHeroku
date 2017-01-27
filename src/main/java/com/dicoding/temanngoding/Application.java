@@ -1,4 +1,4 @@
-package com.linecorp.example.moviesdata;
+package com.dicoding.temanngoding;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.linecorp.example.moviesdata;
+package com.dicoding.temanngoding;
 
 /**
  * Created by root on 1/27/17.
