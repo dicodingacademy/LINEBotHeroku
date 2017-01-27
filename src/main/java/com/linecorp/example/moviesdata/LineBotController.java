@@ -202,6 +202,7 @@ public class LineBotController
         }
         
         System.out.println("Message to user: " + msgToUser);
+        System.out.println(image);
         
 //        //Check whether response successfully retrieve or not
 //        if (msgToUser.length() <= 11 || !ePayload.events[0].message.type.equals("text")){
