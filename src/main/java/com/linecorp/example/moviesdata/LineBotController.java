@@ -185,11 +185,11 @@ public class LineBotController
         
         //Check user's request
         if (userTxt.contains("owner")){
-            msgToUser = success;
+            msgToUser = owner;
 //            pushPoster(targetID, eventData.getImage_path());
         }
         else if (userTxt.contains("event")){
-            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/20170112125146109f0470214ce3395b32e48678118a5f.jpeg", ePayload.events[0].source.userId, success);
+            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/20170112125146109f0470214ce3395b32e48678118a5f.jpeg", ePayload.events[0].source.userId, owner);
         }
         
         System.out.println("Message to user: " + msgToUser);
