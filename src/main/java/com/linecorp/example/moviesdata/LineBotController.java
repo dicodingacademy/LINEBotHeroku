@@ -206,7 +206,7 @@ public class LineBotController
             carouselForUser(image, ePayload.events[0].source.userId, owner, link);
         }
         
-        System.out.println("Message to user: " + msgToUser);
+        System.out.println("Message to user: " + image);
         
 //        //Check whether response successfully retrieve or not
 //        if (msgToUser.length() <= 11 || !ePayload.events[0].message.type.equals("text")){
