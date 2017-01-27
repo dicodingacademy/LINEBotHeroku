@@ -9,8 +9,8 @@ public class Event {
     {
         return success;
     }
-    private List<String> data;
-    public List<String> getData(){
+    private String data;
+    public String getData(){
         return data;
     }
 }
