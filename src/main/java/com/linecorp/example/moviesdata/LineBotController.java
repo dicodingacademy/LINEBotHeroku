@@ -178,7 +178,7 @@ public class LineBotController
         
         Gson mGson = new Gson();
         Event event = mGson.fromJson(jObjGet, Event.class);
-        String success = event.data.get(0).getImage_path();
+        String success = String.valueOf(event.getSuccess());
         String msgToUser = " ";
         
         //Check user's request
