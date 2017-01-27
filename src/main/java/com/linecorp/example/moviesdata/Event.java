@@ -15,7 +15,7 @@ public class Event {
     // Getters and setters are not required for this example.
     // GSON sets the fields directly using reflection.
     
-    public String getMovie(){
+    public String getEvent(){
         String msg = "Plot: " + Plot + "\nReleased: " + Released + "\nDirector: " + Director + "\nWriter: " + Writer + "\nAwards: " + Awards + "\nActors: " + Actors;
         return msg;
     }

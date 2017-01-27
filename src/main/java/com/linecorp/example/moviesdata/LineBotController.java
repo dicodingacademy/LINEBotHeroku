@@ -140,7 +140,7 @@ public class LineBotController
 //        System.out.println("Text from User: " + title);
 
         // Act as client with GET method
-        String URI = "http://private-b8cf44-androidcleancode.apiary-mock.com/v1/city";
+        String URI = "https://www.dicoding.com/public/api/events/410";
         System.out.println("URI: " +  URI);
         
         String jObjGet = " ";
@@ -182,7 +182,7 @@ public class LineBotController
         
         //Check user's request
         if (userTxt.contains("message")){
-            msgToUser = event.getMovie();
+            msgToUser = event.getMessage();
             pushPoster(targetID, event.getImage_path());
         } else if (userTxt.contains("plot")){
             msgToUser = event.getPlot();
@@ -199,7 +199,7 @@ public class LineBotController
         } else if (userTxt.contains("actors")){
             msgToUser = event.getActors();
         } else if (userTxt.contains("event")){
-            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/20170112125146109f0470214ce3395b32e48678118a5f.jpeg", ePayload.events[0].source.userId, event.getMessage());
+            carouselForUser(event.getImage_path(), ePayload.events[0].source.userId, event.getMessage());
         }
         
         System.out.println("Message to user: " + msgToUser);
