@@ -180,6 +180,7 @@ public class LineBotController
         Event event = mGson.fromJson(jObjGet, Event.class);
         Data data = mGson.fromJson(jObjGet, Data.class);
         String success = String.valueOf(event.getSuccess());
+        String owner = data.getOwner_display_name();
         String msgToUser = " ";
         
         //Check user's request
