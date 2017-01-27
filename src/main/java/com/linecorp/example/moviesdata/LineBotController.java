@@ -141,7 +141,7 @@ public class LineBotController
 //        System.out.println("Text from User: " + title);
 
         // Act as client with GET method
-        String URI = "https://www.dicoding.com/public/api/events/410";
+        String URI = "https://www.dicoding.com/public/api/events";
         System.out.println("URI: " +  URI);
         
         String jObjGet = " ";
@@ -206,7 +206,7 @@ public class LineBotController
             carouselForUser(image, ePayload.events[0].source.userId, owner, link);
         }
         
-        System.out.println("Message to user: " + link);
+        System.out.println("Message to user: " + msgToUser);
         
 //        //Check whether response successfully retrieve or not
 //        if (msgToUser.length() <= 11 || !ePayload.events[0].message.type.equals("text")){
@@ -274,7 +274,7 @@ public class LineBotController
                                     (poster_url, title, "Select one for more info", Arrays.asList
                                         (new MessageAction("Summary", "summary"),
                                          new MessageAction("Description", "description"),
-                                         new MessageAction("Link", "https://google.com"))),
+                                         new URIAction("Link", uri))),
                                   new CarouselColumn
                                     (poster_url, title, "Select one for more info", Arrays.asList
                                         (new MessageAction("Time", "time"),
