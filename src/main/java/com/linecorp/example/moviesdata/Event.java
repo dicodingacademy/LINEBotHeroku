@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Event {
 
-    private int success;
-    public int getSuccess ()
+    private Boolean success;
+    public Boolean getSuccess ()
     {
         return success;
     }
