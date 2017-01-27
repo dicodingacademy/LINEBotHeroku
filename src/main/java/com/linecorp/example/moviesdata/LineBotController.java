@@ -179,18 +179,18 @@ public class LineBotController
         
         Gson mGson = new Gson();
         Event event = mGson.fromJson(jObjGet, Event.class);
-        String owner = event.getData().getOwner_display_name();
-        String summary = event.getData().getSummary();
-        String description = event.getData().getDescription();
-        String link = event.getData().getLink();
-        String time = event.getData().getBegin_time() + " - " + event.getData().getEnd_time();
-        String address = event.getData().getAddress();
-        String image = "https://dicodingacademy.blob.core.windows.net/eventimages/"+event.getData().getImage_path();
+        String owner = event.getData().get(0).getOwner_display_name();
+        String summary = event.getData().get(0).getSummary();
+        String description = event.getData().get(0).getDescription();
+        String link = event.getData().get(0).getLink();
+        String time = event.getData().get(0).getBegin_time() + " - " + event.getData().get(0).getEnd_time();
+        String address = event.getData().get(0).getAddress();
+        String image = "https://dicodingacademy.blob.core.windows.net/eventimages/"+event.getData().get(0).getImage_path();
         String msgToUser = " ";
         
         //Check user's request
         if (userTxt.contains("name")){
-            pushMessage(targetID, event.getData().getName());
+            pushMessage(targetID, event.getData().get(0).getName());
         } else if (userTxt.contains("summary")){
             pushMessage(targetID, summary);
         } else if (userTxt.contains("description")){

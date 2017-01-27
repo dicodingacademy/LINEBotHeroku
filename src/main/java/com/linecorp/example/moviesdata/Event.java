@@ -7,12 +7,12 @@ import java.util.Objects;
 public class Event {
 
     private Boolean success;
-    private Data data;
+    private List<Data> data;
     public Boolean getSuccess ()
     {
         return success;
     }
-    public Data getData(){
+    public List<Data> getData(){
         return data;
     }
 }
