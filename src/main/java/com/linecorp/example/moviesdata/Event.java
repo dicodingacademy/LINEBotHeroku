@@ -7,4 +7,9 @@ public class Event {
     {
         return success;
     }
+
+    private Data[] data;
+    public Data[] getData(){
+        return data;
+    }
 }

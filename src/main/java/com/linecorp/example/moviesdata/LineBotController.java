@@ -4,10 +4,14 @@ package com.linecorp.example.moviesdata;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Future;
 import java.util.concurrent.ExecutionException;
 
+import com.google.gson.reflect.TypeToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -178,18 +182,16 @@ public class LineBotController
         
         Gson mGson = new Gson();
         Event event = mGson.fromJson(jObjGet, Event.class);
-        Data data = mGson.fromJson(jObjGet, Data.class);
         String success = String.valueOf(event.getSuccess());
-        String owner = data.getOwner_display_name();
         String msgToUser = " ";
         
         //Check user's request
         if (userTxt.contains("owner")){
-            msgToUser = owner;
+            msgToUser = success;
 //            pushPoster(targetID, eventData.getImage_path());
         }
         else if (userTxt.contains("event")){
-            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/20170112125146109f0470214ce3395b32e48678118a5f.jpeg", ePayload.events[0].source.userId, owner);
+            carouselForUser("https://dicodingacademy.blob.core.windows.net/eventimages/20170112125146109f0470214ce3395b32e48678118a5f.jpeg", ePayload.events[0].source.userId, success);
         }
         
         System.out.println("Message to user: " + msgToUser);
