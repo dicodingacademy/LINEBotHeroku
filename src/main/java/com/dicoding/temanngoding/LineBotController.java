@@ -53,7 +53,7 @@ public class LineBotController
         @RequestHeader("X-Line-Signature") String aXLineSignature,
         @RequestBody String aPayload)
     {
-        // compose body
+         // compose body
         final String text=String.format("The Signature is: %s",
             (aXLineSignature!=null && aXLineSignature.length() > 0) ? aXLineSignature : "N/A");
         
