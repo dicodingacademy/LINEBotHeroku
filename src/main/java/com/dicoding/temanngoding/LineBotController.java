@@ -93,9 +93,9 @@ public class LineBotController
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    private void getMessageData(String title, String targetID) throws IOException{
-        if (title!=null){
-            pushMessage(targetID, title);
+    private void getMessageData(String message, String targetID) throws IOException{
+        if (message!=null){
+            pushMessage(targetID, message);
         }
     }
 
