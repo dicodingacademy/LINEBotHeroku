@@ -21,7 +21,7 @@ cloudfoundry {
 	space = 'Guido'
 	username = '13650028@student.uin-suka.ac.id'
 	password = 'd\'occupier'
-	file = new File('target/javaHelloWorldApp.war')
+	file = new File('target/JavaHelloWorldApp.war')
 	uri = 'http://temanngoding.mybluemix.net'
 	application = 'TemanNgoding'
 }
