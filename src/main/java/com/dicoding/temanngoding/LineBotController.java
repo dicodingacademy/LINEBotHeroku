@@ -94,7 +94,7 @@ public class LineBotController
                 
                 if (!msgText.contains("bot leave")){
                     try {
-                        getMovieData(msgText, payload, idTarget);
+                        getMessageData(msgText, idTarget);
                     } catch (IOException e) {
                         System.out.println("Exception is raised ");
                         e.printStackTrace();
@@ -113,59 +113,10 @@ public class LineBotController
          
         return new ResponseEntity<String>(HttpStatus.OK);
     }
-    
-    //Method for get movie data from OMDb API
-    private void getMovieData(String title, Payload ePayload, String targetID) throws IOException{
-        String userTxt = title;
 
-//        if (title.indexOf("\"") == -1){
-//            replyToUser(ePayload.events[0].replyToken, "Unknown keyword");
-//            return;
-//        }
-//
-//        title = title.substring(title.indexOf("\"") + 1, title.lastIndexOf("\""));
-//        System.out.println("Index: " + Integer.toString(title.indexOf("\"")));
-//        title = title.replace(" ", "+");
-//        System.out.println("Text from User: " + title);
-
-//        // Act as client with GET method
-//        String URI = "https://www.dicoding.com/public/api/events";
-//        System.out.println("URI: " +  URI);
-//
-//        String jObjGet = " ";
-//        CloseableHttpAsyncClient c = HttpAsyncClients.createDefault();
-//
-//        try{
-//            c.start();
-//            //Use HTTP Get to retrieve data
-//            HttpGet get = new HttpGet(URI);
-//
-//            Future<HttpResponse> future = c.execute(get, null);
-//            HttpResponse responseGet = future.get();
-//            System.out.println("HTTP executed");
-//            System.out.println("HTTP Status of response: " + responseGet.getStatusLine().getStatusCode());
-//
-//            // Get the response from the GET request
-//            BufferedReader brd = new BufferedReader(new InputStreamReader(responseGet.getEntity().getContent()));
-//
-//            StringBuffer resultGet = new StringBuffer();
-//            String lineGet = "";
-//            while ((lineGet = brd.readLine()) != null) {
-//                resultGet.append(lineGet);
-//            }
-//            System.out.println("Got result");
-//
-//            // Change type of resultGet to JSONObject
-//            jObjGet = resultGet.toString();
-//            System.out.println("OMDb responses: " + jObjGet);
-//        } catch (InterruptedException | ExecutionException e) {
-//            System.out.println("Exception is raised ");
-//            e.printStackTrace();
-//        } finally {
-//            c.close();
-//        }
-        if (userTxt!=null){
-            pushMessage(targetID, userTxt);
+    private void getMessageData(String title, String targetID) throws IOException{
+        if (title!=null){
+            pushMessage(targetID, title);
         }
     }
 
