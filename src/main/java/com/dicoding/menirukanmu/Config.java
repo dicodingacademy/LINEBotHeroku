@@ -1,5 +1,5 @@
 
-package com.dicoding.temanngoding;
+package com.dicoding.menirukanmu;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;

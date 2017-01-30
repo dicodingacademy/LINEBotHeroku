@@ -1,4 +1,4 @@
-package com.dicoding.temanngoding;
+package com.dicoding.menirukanmu;
 
 public class Payload {
     public Events[] events;

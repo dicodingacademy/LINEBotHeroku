@@ -1,5 +1,5 @@
 
-package com.dicoding.temanngoding;
+package com.dicoding.menirukanmu;
 
 import com.google.gson.Gson;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;

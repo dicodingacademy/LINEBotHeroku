@@ -1,4 +1,4 @@
-package com.dicoding.temanngoding;
+package com.dicoding.menirukanmu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
