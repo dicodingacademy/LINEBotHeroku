@@ -48,49 +48,47 @@ public class LineBotController
 
         String msgText = " ";
         String idTarget = " ";
-//        String eventType = payload.events[0].type;
+        String eventType = payload.events[0].type;
 
-        if (!payload.events[0].message.type.equals("text")){
-            replyToUser(payload.events[0].replyToken, "Unknown message");
-        } else {
-            msgText = payload.events[0].message.text;
-            msgText = msgText.toLowerCase();
-
-            if (!msgText.contains("bot leave")){
-                try {
-                    getMessageData(msgText, idTarget);
-                } catch (IOException e) {
-                    System.out.println("Exception is raised ");
-                    e.printStackTrace();
-                }
-            } else {
-                if (payload.events[0].source.type.equals("group")){
-                    leaveGR(payload.events[0].source.groupId, "group");
-                } else if (payload.events[0].source.type.equals("room")){
-                    leaveGR(payload.events[0].source.roomId, "room");
-                }
+        if (eventType.equals("join")){
+            if (payload.events[0].source.type.equals("group")){
+                replyToUser(payload.events[0].replyToken, "Hello Group");
+            }
+            if (payload.events[0].source.type.equals("room")){
+                replyToUser(payload.events[0].replyToken, "Hello Room");
+            }
+        } else if (eventType.equals("message")){
+            if (payload.events[0].source.type.equals("group")){
+                idTarget = payload.events[0].source.groupId;
+            } else if (payload.events[0].source.type.equals("room")){
+                idTarget = payload.events[0].source.roomId;
+            } else if (payload.events[0].source.type.equals("user")){
+                idTarget = payload.events[0].source.userId;
             }
 
-        }
+            if (!payload.events[0].message.type.equals("text")){
+                replyToUser(payload.events[0].replyToken, "Unknown message");
+            } else {
+                msgText = payload.events[0].message.text;
+                msgText = msgText.toLowerCase();
 
-//        if (eventType.equals("join")){
-//            if (payload.events[0].source.type.equals("group")){
-//                replyToUser(payload.events[0].replyToken, "Hello Group");
-//            }
-//            if (payload.events[0].source.type.equals("room")){
-//                replyToUser(payload.events[0].replyToken, "Hello Room");
-//            }
-//        } else if (eventType.equals("message")){
-//            if (payload.events[0].source.type.equals("group")){
-//                idTarget = payload.events[0].source.groupId;
-//            } else if (payload.events[0].source.type.equals("room")){
-//                idTarget = payload.events[0].source.roomId;
-//            } else if (payload.events[0].source.type.equals("user")){
-//                idTarget = payload.events[0].source.userId;
-//            }
-//
-//
-//        }
+                if (!msgText.contains("bot leave")){
+                    try {
+                        getMessageData(msgText, idTarget);
+                    } catch (IOException e) {
+                        System.out.println("Exception is raised ");
+                        e.printStackTrace();
+                    }
+                } else {
+                    if (payload.events[0].source.type.equals("group")){
+                        leaveGR(payload.events[0].source.groupId, "group");
+                    } else if (payload.events[0].source.type.equals("room")){
+                        leaveGR(payload.events[0].source.roomId, "room");
+                    }
+                }
+
+            }
+        }
          
         return new ResponseEntity<String>(HttpStatus.OK);
     }
