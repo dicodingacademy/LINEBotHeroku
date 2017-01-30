@@ -1,15 +1,29 @@
 apply plugin: 'spring-boot'
+apply plugin: 'cloudfoundry'
+
 buildscript
 {
 	repositories
 	{
 		mavenCentral()
+		maven { url "https://oss.sonatype.org/content/repositories/springsource-milestones" }
 	}
 
 	dependencies
 	{
 		classpath('org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE')
+		classpath (group: 'org.cloudfoundry', name: 'cf-gradle-plugin', version: '1.0.2')
 	}
+}
+
+cloudfoundry {
+	target='https://api.ng.bluemix.net'
+	space = 'Guido'
+	username = '13650028@student.uin-suka.ac.id'
+	password = 'd\'occupier'
+	file = new File('target/javaHelloWorldApp.war')
+	uri = 'http://temanngoding.mybluemix.net'
+	application = 'TemanNgoding'
 }
 
 jar
