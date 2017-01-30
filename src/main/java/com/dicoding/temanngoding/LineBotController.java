@@ -185,22 +185,25 @@ public class LineBotController
         String msgToUser = " ";
         
         //Check user's request
-        if (userTxt.contains("name")){
-            pushMessage(targetID, event.getData().get(0).getName());
-        } else if (userTxt.contains("summary")){
-            pushMessage(targetID, summary);
-        } else if (userTxt.contains("description")){
-            pushMessage(targetID, description);
-        } else if (userTxt.contains("time")){
+        if (userTxt==null){
             pushMessage(targetID, userTxt);
-        } else if (userTxt.contains("address")){
-            pushMessage(targetID, address);
-        } else if (userTxt.contains("owner")){
-            pushMessage(targetID, owner);
         }
-        else if (userTxt.contains("event")){
-            carouselForUser(image, ePayload.events[0].source.userId, owner, link);
-        }
+//        if (userTxt.contains("name")){
+//            pushMessage(targetID, event.getData().get(0).getName());
+//        } else if (userTxt.contains("summary")){
+//            pushMessage(targetID, summary);
+//        } else if (userTxt.contains("description")){
+//            pushMessage(targetID, description);
+//        } else if (userTxt.contains("time")){
+//            pushMessage(targetID, userTxt);
+//        } else if (userTxt.contains("address")){
+//            pushMessage(targetID, address);
+//        } else if (userTxt.contains("owner")){
+//            pushMessage(targetID, owner);
+//        }
+//        else if (userTxt.contains("event")){
+//            carouselForUser(image, ePayload.events[0].source.userId, owner, link);
+//        }
         
         System.out.println("Message to user: " + image);
         
