@@ -185,7 +185,7 @@ public class LineBotController
         String msgToUser = " ";
         
         //Check user's request
-        if (userTxt==null){
+        if (userTxt!=null){
             pushMessage(targetID, userTxt);
         }
 //        if (userTxt.contains("name")){
