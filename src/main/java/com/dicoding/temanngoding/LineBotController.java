@@ -14,10 +14,6 @@ import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.message.template.CarouselColumn;
 import com.linecorp.bot.model.message.template.CarouselTemplate;
 import com.linecorp.bot.model.response.BotApiResponse;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
-import org.apache.http.impl.nio.client.HttpAsyncClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -25,12 +21,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import retrofit2.Response;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 @RestController
 @RequestMapping(value="/linebot")
@@ -136,83 +128,45 @@ public class LineBotController
 //        title = title.replace(" ", "+");
 //        System.out.println("Text from User: " + title);
 
-        // Act as client with GET method
-        String URI = "https://www.dicoding.com/public/api/events";
-        System.out.println("URI: " +  URI);
-        
-        String jObjGet = " ";
-        CloseableHttpAsyncClient c = HttpAsyncClients.createDefault();
-        
-        try{
-            c.start();
-            //Use HTTP Get to retrieve data
-            HttpGet get = new HttpGet(URI);
-            
-            Future<HttpResponse> future = c.execute(get, null);
-            HttpResponse responseGet = future.get();
-            System.out.println("HTTP executed");
-            System.out.println("HTTP Status of response: " + responseGet.getStatusLine().getStatusCode());
-            
-            // Get the response from the GET request
-            BufferedReader brd = new BufferedReader(new InputStreamReader(responseGet.getEntity().getContent()));
-            
-            StringBuffer resultGet = new StringBuffer();
-            String lineGet = "";
-            while ((lineGet = brd.readLine()) != null) {
-                resultGet.append(lineGet);
-            }
-            System.out.println("Got result");
-            
-            // Change type of resultGet to JSONObject
-            jObjGet = resultGet.toString();
-            System.out.println("OMDb responses: " + jObjGet);
-        } catch (InterruptedException | ExecutionException e) {
-            System.out.println("Exception is raised ");
-            e.printStackTrace();
-        } finally {
-            c.close();
-        }
-        
-        Gson mGson = new Gson();
-        Event event = mGson.fromJson(jObjGet, Event.class);
-        String owner = event.getData().get(0).getOwner_display_name();
-        String summary = event.getData().get(0).getSummary();
-        String description = event.getData().get(0).getDescription();
-        String link = event.getData().get(0).getLink();
-        String time = event.getData().get(0).getBegin_time() + " - " + event.getData().get(0).getEnd_time();
-        String address = event.getData().get(0).getAddress();
-        String image = event.getData().get(0).getImage_path();
-        String msgToUser = " ";
-        
-        //Check user's request
+//        // Act as client with GET method
+//        String URI = "https://www.dicoding.com/public/api/events";
+//        System.out.println("URI: " +  URI);
+//
+//        String jObjGet = " ";
+//        CloseableHttpAsyncClient c = HttpAsyncClients.createDefault();
+//
+//        try{
+//            c.start();
+//            //Use HTTP Get to retrieve data
+//            HttpGet get = new HttpGet(URI);
+//
+//            Future<HttpResponse> future = c.execute(get, null);
+//            HttpResponse responseGet = future.get();
+//            System.out.println("HTTP executed");
+//            System.out.println("HTTP Status of response: " + responseGet.getStatusLine().getStatusCode());
+//
+//            // Get the response from the GET request
+//            BufferedReader brd = new BufferedReader(new InputStreamReader(responseGet.getEntity().getContent()));
+//
+//            StringBuffer resultGet = new StringBuffer();
+//            String lineGet = "";
+//            while ((lineGet = brd.readLine()) != null) {
+//                resultGet.append(lineGet);
+//            }
+//            System.out.println("Got result");
+//
+//            // Change type of resultGet to JSONObject
+//            jObjGet = resultGet.toString();
+//            System.out.println("OMDb responses: " + jObjGet);
+//        } catch (InterruptedException | ExecutionException e) {
+//            System.out.println("Exception is raised ");
+//            e.printStackTrace();
+//        } finally {
+//            c.close();
+//        }
         if (userTxt!=null){
             pushMessage(targetID, userTxt);
         }
-//        if (userTxt.contains("name")){
-//            pushMessage(targetID, event.getData().get(0).getName());
-//        } else if (userTxt.contains("summary")){
-//            pushMessage(targetID, summary);
-//        } else if (userTxt.contains("description")){
-//            pushMessage(targetID, description);
-//        } else if (userTxt.contains("time")){
-//            pushMessage(targetID, userTxt);
-//        } else if (userTxt.contains("address")){
-//            pushMessage(targetID, address);
-//        } else if (userTxt.contains("owner")){
-//            pushMessage(targetID, owner);
-//        }
-//        else if (userTxt.contains("event")){
-//            carouselForUser(image, ePayload.events[0].source.userId, owner, link);
-//        }
-        
-        System.out.println("Message to user: " + image);
-        
-//        //Check whether response successfully retrieve or not
-//        if (msgToUser.length() <= 11 || !ePayload.events[0].message.type.equals("text")){
-//            replyToUser(ePayload.events[0].replyToken, "Request Timeout");
-//        } else {
-//            replyToUser(ePayload.events[0].replyToken, msgToUser);
-//        }
     }
 
     //Method for reply user's message
