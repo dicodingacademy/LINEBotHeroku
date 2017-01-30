@@ -1,40 +1,36 @@
 
 package com.dicoding.temanngoding;
 
+import com.google.gson.Gson;
+import com.linecorp.bot.client.LineMessagingServiceBuilder;
+import com.linecorp.bot.client.LineSignatureValidator;
+import com.linecorp.bot.model.PushMessage;
+import com.linecorp.bot.model.ReplyMessage;
+import com.linecorp.bot.model.action.MessageAction;
+import com.linecorp.bot.model.action.URIAction;
+import com.linecorp.bot.model.message.ImageMessage;
+import com.linecorp.bot.model.message.TemplateMessage;
+import com.linecorp.bot.model.message.TextMessage;
+import com.linecorp.bot.model.message.template.CarouselColumn;
+import com.linecorp.bot.model.message.template.CarouselTemplate;
+import com.linecorp.bot.model.response.BotApiResponse;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
+import org.apache.http.impl.nio.client.HttpAsyncClients;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import retrofit2.Response;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.concurrent.Future;
 import java.util.concurrent.ExecutionException;
-
-import com.linecorp.bot.model.action.URIAction;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.*;
-
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.nio.client.HttpAsyncClients;
-import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
-
-import com.google.gson.Gson;
-
-import retrofit2.Response;
-
-import com.linecorp.bot.model.action.MessageAction;
-import com.linecorp.bot.model.PushMessage;
-import com.linecorp.bot.model.ReplyMessage;
-import com.linecorp.bot.model.message.TextMessage;
-import com.linecorp.bot.model.message.TemplateMessage;
-import com.linecorp.bot.model.message.ImageMessage;
-import com.linecorp.bot.model.message.template.CarouselColumn;
-import com.linecorp.bot.model.message.template.CarouselTemplate;
-import com.linecorp.bot.model.response.BotApiResponse;
-import com.linecorp.bot.client.LineSignatureValidator;
-import com.linecorp.bot.client.LineMessagingServiceBuilder;
+import java.util.concurrent.Future;
 
 @RestController
 @RequestMapping(value="/linebot")
@@ -196,7 +192,7 @@ public class LineBotController
         } else if (userTxt.contains("description")){
             pushMessage(targetID, description);
         } else if (userTxt.contains("time")){
-            pushMessage(targetID, time);
+            pushMessage(targetID, userTxt);
         } else if (userTxt.contains("address")){
             pushMessage(targetID, address);
         } else if (userTxt.contains("owner")){
